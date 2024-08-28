@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #form {
+            text-align: center;
+            margin-top: 40px;
+        }
+        #head{
+            text-align:center;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="head">SignUp</p>
+    <form action="#" id="form">
+        <input type="text" placeholder="username" id="uname"><br />
+        <input type="password" placeholder="password" id="password"><br />
+        <input type="submit">
+        <p>Have you already logged in?<a href="./login.html">Login</a></p>
+    </form>
+
+</body>
+
+</html>
+
+<script>
+    let numericKey=1;
+    document.getElementById('form').addEventListener('submit', getUserData);
+    function getUserData() {
+        let uname = document.getElementById('uname').value;
+        let password = document.getElementById('password').value;
+        // set into firebase
+        setData(uname, password);
+    }
+
+    function setData(uname, password) {
+        console.log(numericKey);
+        numericKey++;
+        fetch(`https://auth-30c2e-default-rtdb.firebaseio.com/users/${numericKey}.json`, {
+            method: 'put',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: uname,
+                password:password
+            })
+        })
+            .then(response => {
+                  if(response.status===200){
+                     alert("Successfully Signed Up");
+                  }
+                  else{
+                    alert("Plese fill correctly")
+                  }
+            })
+            .catch(error => console.error('Error:', error));
+
+
+    }
+
+
+</script>
