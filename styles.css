@@ -1,0 +1,30 @@
+body {
+    --primary-color: #1A202C;
+    --bg-color: #FFFFFF;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark {
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+}
+
+header {
+    background-color: var(--primary-color);
+}
+
+#whiteboard {
+    background-color: var(--bg-color);
+}
+
+button {
+    transition: background-color 0.3s;
+    color: white;
+}
+
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0;
+    margin: 0;
+}
