@@ -46,3 +46,53 @@ function applyCustomColors() {
 
 // Initialize the custom colors
 applyCustomColors();
+
+// Whiteboard Canvas Setup
+const canvas = document.getElementById('whiteboard');
+const ctx = canvas.getContext('2d');
+canvas.width = canvas.offsetWidth;
+canvas.height = canvas.offsetHeight;
+
+let drawing = false;
+let currentTool = 'pen';
+let startX, startY;
+
+canvas.addEventListener('mousedown', (e) => {
+    if (isLocked) return;
+    drawing = true;
+    ctx.beginPath();
+    startX = e.clientX - canvas.offsetLeft;
+    startY = e.clientY - canvas.offsetTop;
+    ctx.moveTo(startX, startY);
+});
+
+canvas.addEventListener('mouseup', () => {
+    if (isLocked) return;
+    drawing = false;
+    if (currentTool !== 'pen' && currentTool !== 'eraser') {
+        drawShape();
+    }
+});
+
+canvas.addEventListener('mousemove', (e) => {
+    if (isLocked || !drawing) return;
+    switch (currentTool) {
+        case 'pen':
+            ctx.lineWidth = lineThickness;
+            ctx.strokeStyle = penColor;
+            ctx.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+            ctx.stroke();
+            break;
+        case 'eraser':
+            ctx.lineWidth = lineThickness * 5;
+            ctx.strokeStyle = '#FFFFFF';
+            ctx.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+            ctx.stroke();
+            break;
+    }
+});
+
+// Tool Selection
+document.getElementById('penTool').addEventListener('click', () => currentTool = 'pen');
+document.getElementById('eraserTool').addEventListener('click', () => currentTool = 'eraser');
+document.getElementById('lineTool').addEventListener('click', () => currentTool = 'line');
