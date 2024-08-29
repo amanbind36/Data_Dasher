@@ -1,85 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ThinkSpace Whiteboard</title>
-    <!-- Tailwind CSS CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body class="bg-white dark:bg-gray-900 text-black dark:text-white">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Whiteboard</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Link to the CSS file -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Font Awesome -->
+  </head>
 
-    <!-- Header -->
-    <header class="p-4 bg-gray-800 text-white flex justify-between items-center">
-        <div class="flex items-center">
-            <img src="./Designer.png" alt="ThinkSpace Logo" class="h-8 mr-2">
-            <h1 class="text-2xl">ThinkSpace</h1>
-        </div>
-        <div class="flex items-center space-x-4">
-            <button id="themeToggle" class="bg-gray-700 px-4 py-2 rounded">Toggle Dark/Light Mode</button>
-            <label class="text-white">Primary Color:</label>
-            <input type="color" id="primaryColorPicker" class="border rounded px-2 py-1">
-            <label class="text-white">Background Color:</label>
-            <input type="color" id="bgColorPicker" class="border rounded px-2 py-1">
-            <button id="lockViewModeBtn" class="bg-gray-700 px-4 py-2 rounded">
-                <i class="fas fa-lock-open"></i> <!-- Font Awesome icon for unlocked state -->
-            </button>
-        </div>
-    </header>
-
+  <body>
     <!-- Toolbar -->
-    <div class="p-4 flex space-x-4">
-        <button id="penTool" class="bg-blue-500 text-white px-4 py-2 rounded"><i class="fas fa-pencil-alt"></i></button>
-        <button id="eraserTool" class="bg-red-500 text-white px-4 py-2 rounded"><i class="fas fa-eraser"></i></button>
-        <button id="lineTool" class="bg-green-500 text-white px-4 py-2 rounded"><i class="fas fa-minus"></i></button>
-        <button id="circleTool" class="bg-yellow-500 text-white px-4 py-2 rounded"><i class="fas fa-circle"></i></button>
-        <button id="rectangleTool" class="bg-purple-500 text-white px-4 py-2 rounded"><i class="fas fa-square"></i></button>
-        <button id="arrowTool" class="bg-pink-500 text-white px-4 py-2 rounded"><i class="fas fa-arrow-right"></i></button>
-        <button id="ellipseTool" class="bg-indigo-500 text-white px-4 py-2 rounded"><i class="fas fa-ellipsis-h"></i></button>
-        <button id="textTool" class="bg-gray-500 text-white px-4 py-2 rounded"><i class="fas fa-font"></i></button>
-        <input type="color" id="colorPicker" class="border rounded px-2 py-1">
-        <input type="range" id="lineThickness" min="1" max="10" value="2" class="border rounded px-2 py-1">
-        <select id="fontPicker" class="border rounded px-2 py-1">
-            <option value="Arial">Arial</option>
-            <option value="Verdana">Verdana</option>
-            <option value="Times New Roman">Times New Roman</option>
-            <option value="Courier New">Courier New</option>
-            <option value="Georgia">Georgia</option>
-        </select>
-        <div id="zoomControls" class="flex space-x-2">
-            <button id="zoomIn" class="bg-green-500 text-white px-2 py-2 rounded">
-                <i class="fas fa-search-plus"></i>
-            </button>
-            <button id="zoomOut" class="bg-red-500 text-white px-2 py-2 rounded">
-                <i class="fas fa-search-minus"></i>
-            </button>
-        </div>
+    <div id="toolbar">
+      <!-- Logo and App Name -->
+      <div id="appHeader">
+        <img src="./thinkspace.jpeg" alt="ThinkSpace Logo" id="logo" />
+        <span id="appName">ThinkSpace</span>
+      </div>
+      <!-- Other Toolbar Buttons -->
+      <button id="pen" title="Pen"><i class="fa-solid fa-pen"></i></button>
+      <button id="eraser" title="Eraser">
+        <i class="fa-solid fa-eraser"></i>
+      </button>
+      <button id="line" title="Line"><i class="fa-solid fa-line"></i></button>
+      <button id="rect" title="Rectangle">
+        <i class="fa-solid fa-square"></i>
+      </button>
+      <button id="circle" title="Circle">
+        <i class="fa-solid fa-circle"></i>
+      </button>
+      <button id="arrow" title="Arrow">
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+      <input type="color" id="colorPicker" title="Pick Color" />
+      <input
+        type="number"
+        id="lineThickness"
+        min="1"
+        value="2"
+        title="Line Thickness"
+      />
+      <button id="clear" title="Clear">
+        <i class="fa-solid fa-trash"></i>
+      </button>
+      <button id="bgColor" title="Background Color">
+        <i class="fa-solid fa-palette"></i>
+      </button>
+      <button id="text" title="Text">
+  <i class="fa-solid fa-font"></i> <!-- Font Awesome icon for text -->
+</button>
+
+      <button id="download" title="Download">
+        <i class="fa-solid fa-download"></i>
+      </button>
     </div>
 
-    <!-- Whiteboard Canvas -->
-    <div class="p-4">
-        <canvas id="whiteboard" class="border-2 border-gray-300 w-full h-96 bg-white dark:bg-gray-800"></canvas>
+    <!-- Additional Controls -->
+<div id="additionalControls">
+  <button id="addStickyNote" title="Add Sticky Note">
+    <i class="fa-solid fa-sticky-note"></i> Sticky
+  </button>
+  <button id="zoomIn" title="Zoom In">
+    <i class="fa-solid fa-search-plus"></i>
+  </button>
+  <button id="zoomOut" title="Zoom Out">
+    <i class="fa-solid fa-search-minus"></i>
+  </button>
+  <button id="themeToggle" title="Switch Theme">Dark/Light</button>
+  <button id="toggleLock" title="Lock/Unlock">View/Edit</button>
+</div>
+
+<button id="undoBtn" class="bg-gray-500 text-white px-4 py-2 rounded">
+  <i class="fas fa-undo"></i> Undo
+</button>
+<button id="redoBtn" class="bg-gray-500 text-white px-4 py-2 rounded">
+  <i class="fas fa-redo"></i> Redo
+</button>
+    <!-- Text Options -->
+    <div id="textOptions">
+      <input type="color" id="textColorPicker" value="#000000" />
+      <select id="fontSelect">
+        <option value="Arial">Arial</option>
+        <option value="Courier New">Courier New</option>
+        <option value="Georgia">Georgia</option>
+        <option value="Times New Roman">Times New Roman</option>
+        <option value="Verdana">Verdana</option>
+      </select>
+      <input type="number" id="fontSize" value="16" min="1" />
     </div>
 
-    <!-- Sticky Notes Container -->
-    <div id="stickyNotesContainer" class="p-4 space-y-4"></div>
+    <!-- Canvas -->
+     <div id="box">
+      <canvas id="canvas" height="600px" width="800px"></canvas>
+     </div>
+    
 
-    <!-- Toolbar for Sticky Notes -->
-    <div class="p-4">
-        <button id="stickyNoteTool" class="bg-yellow-500 text-white px-4 py-2 rounded">
-            <i class="fas fa-sticky-note"></i> Add Sticky Note
-        </button>
-        <button id="undoBtn" class="bg-gray-500 text-white px-4 py-2 rounded">
-            <i class="fas fa-undo"></i> Undo
-        </button>
-        <button id="redoBtn" class="bg-gray-500 text-white px-4 py-2 rounded">
-            <i class="fas fa-redo"></i> Redo
-        </button>
-    </div>
-
+    <!-- Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
