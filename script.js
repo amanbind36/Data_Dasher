@@ -323,3 +323,103 @@ function showDownloadOptions() {
 textColorPicker.addEventListener('input', (e) => textColor = e.target.value);
 fontSelect.addEventListener('change', (e) => font = e.target.value);
 fontSizeInput.addEventListener('input', (e) => fontSize = e.target.value);
+// Keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+    if (isViewMode) return;
+
+    switch (e.key) {
+        case 'p':
+            tool = 'pen';
+            break;
+        case 'e':
+            tool = 'eraser';
+            break;
+        case 'l':
+            tool = 'line';
+            break;
+        case 'r':
+            tool = 'rect';
+            break;
+        case 'c':
+            tool = 'circle';
+            break;
+        case 'a':
+            tool = 'arrow';
+            break;
+        case '+':
+            zoomIn();
+            break;
+        case '-':
+            zoomOut();
+            break;
+        case 'Escape':
+            toggleLockMode();
+            break;
+        case 'd':
+            toggleTheme();
+            break;
+    }
+});
+
+// Function to place text directly on canvas
+function placeText(e) {
+    if (!isTextMode) return;
+
+    const x = e.offsetX / scaleFactor;
+    const y = e.offsetY / scaleFactor;
+
+    const text = prompt("Enter text:");
+    if (text) {
+        ctx.font = `${fontSize}px ${font}`;
+        ctx.fillStyle = textColor;
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'top';
+        ctx.fillText(text, x, y);
+    }
+
+    isTextMode = false;
+    textOptions.style.display = 'none';
+    canvas.style.cursor = 'crosshair';
+}
+
+// Function to show download options
+function showDownloadOptions() {
+    const format = prompt("Enter format to download (png, pdf, csv):").toLowerCase();
+
+    switch (format) {
+        case 'png':
+            downloadImage();
+            break;
+        case 'pdf':
+            downloadPDF();
+            break;
+        case 'csv':
+            downloadCSV();
+            break;
+        default:
+            alert("Invalid format.");
+    }
+}
+
+// Function to download canvas as image
+function downloadImage() {
+    const link = document.createElement('a');
+    link.download = 'whiteboard.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+}
+
+// Function to download canvas as PDF
+function downloadPDF() {
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF();
+    const imgData = canvas.toDataURL('image/png');
+    pdf.addImage(imgData, 'PNG', 0, 0);
+    pdf.save('whiteboard.pdf');
+}
+
+// Function to download canvas as CSV
+function downloadCSV() {
+    // CSV download not directly feasible for image data; provide image download instead
+    alert("CSV download is not supported for image data.");
+}
