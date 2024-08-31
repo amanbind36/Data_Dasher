@@ -58,7 +58,8 @@
         <i class="fa-solid fa-download"></i>
       </button>
 
-      <button onclick="window.location.href='signUp.html'">SignUp </button>
+      <button id="SignUP" onclick="window.location.href='signUp.html'">SignUp </button>
+      <button id="logout" style="display: none;">LogOut</button>
     </div>
 
     <!-- Additional Controls -->
@@ -72,8 +73,16 @@
   <button id="zoomOut" title="Zoom Out">
     <i class="fa-solid fa-search-minus"></i>
   </button>
-  <button id="themeToggle" title="Switch Theme">Dark/Light</button>
-  <button id="toggleLock" title="Lock/Unlock">View/Edit</button>
+  <button id="themeToggle">
+    <i id="lightIcon" class="fas fa-sun" style="display: none;"></i>
+    <i id="darkIcon" class="fas fa-moon"></i>
+</button>
+
+<button id="toggleLock" title="Lock/Unlock">
+  <i id="editIcon" class="fas fa-pencil-alt"></i>
+  <i id="viewIcon" class="fas fa-eye" style="display: none;"></i>
+</button>
+
   <button id="undoBtn" class="bg-gray-500 text-white px-4 py-2 rounded">
   <i class="fas fa-undo"></i> Undo
 </button>

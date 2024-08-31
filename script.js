@@ -1,31 +1,16 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d', { willReadFrequently: true });
+let signBtn = document.getElementById('SignUP')
+let logBtn = document.getElementById('logout')
+let data = JSON.parse(localStorage.getItem('register'))
+if (data.registered){
+    signBtn.style.display = "none"
+    logBtn.style.display = "block"}
+logBtn.addEventListener('click',()=>{
+    localStorage.clear("register")
+    window.location.href = "login.html"
+})
 
-// Undo and Redo functionality
-// let savedCanvasStates = [];
-// let undoStack = [];
-// let redoStack = [];
-// document.getElementById('undoBtn').addEventListener('click', () => {
-//     if (savedCanvasStates.length > 0) {
-//         redoStack.push(savedCanvasStates.pop());
-//         if (savedCanvasStates.length > 0) {
-//             ctx.putImageData(savedCanvasStates[savedCanvasStates.length - 1], 0, 0);
-//         } else {
-//             ctx.clearRect(0, 0, canvas.width, canvas.height);
-//         }
-//     }
-// });
-
-// document.getElementById('redoBtn').addEventListener('click', () => {
-//     if (redoStack.length > 0) {
-//         const redoState = redoStack.pop();
-//         savedCanvasStates.push(redoState);
-//         ctx.putImageData(redoState, 0, 0);
-//     }
-// });
-// function saveCanvasState() {
-//     savedCanvasStates.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
-// }
 
 // State variables
 let drawing = false;
@@ -301,15 +286,40 @@ function applyZoom() {
 
 // Toggle Lock Mode (View Mode)
 function toggleLockMode() {
+    const editIcon = document.getElementById('editIcon');
+    const viewIcon = document.getElementById('viewIcon');
+
     isViewMode = !isViewMode;
     canvas.style.cursor = isViewMode ? 'default' : 'crosshair';
+
+    if (isViewMode) {
+        editIcon.style.display = 'none';
+        viewIcon.style.display = 'block';
+    } else {
+        editIcon.style.display = 'block';
+        viewIcon.style.display = 'none';
+    }
 }
+
 
 // Toggle theme
 function toggleTheme() {
-    document.body.classList.toggle('dark-mode');
+    const body = document.body;
+    const lightIcon = document.getElementById('lightIcon');
+    const darkIcon = document.getElementById('darkIcon');
+
+    body.classList.toggle('dark-mode');
     document.querySelectorAll('.sticky-note').forEach(note => note.classList.toggle('dark-mode'));
+
+    if (body.classList.contains('dark-mode')) {
+        lightIcon.style.display = 'block';
+        darkIcon.style.display = 'none';
+    } else {
+        lightIcon.style.display = 'none';
+        darkIcon.style.display = 'block';
+    }
 }
+
 
 // Download Options
 function showDownloadOptions() {

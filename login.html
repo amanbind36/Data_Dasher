@@ -133,7 +133,7 @@
     </style>
 </head>
 
-<body>
+  <body>
     <div id="container">
         <p id="head">Login Page</p>
         <form action="#" id="form">
@@ -145,37 +145,42 @@
     </div>
 
     <script>
-        document.getElementById('form').addEventListener('submit', function (e) {
-            e.preventDefault();
-            let username = document.getElementById('username').value;
-            let password = document.getElementById('password').value;
-            if (username && password) {
-                auth(username, password);
-            } else {
-                alert("Please fill in both fields.");
-            }
-        });
-
-        function auth(cusername, cpassword) {
-            fetch('https://auth-30c2e-default-rtdb.firebaseio.com/users.json')
-                .then(response => response.json())
-                .then(data => {
-                    let found = false;
-                    for (let key in data) {
-                        let { password, username } = data[key];
-                        if (cusername === username && cpassword === password) {
-                            found = true;
-                            window.location.href = 'index.html';
-                            break;
-                        }
-                    }
-                    if (!found) {
-                        alert("Login failed. Please check your credentials or sign up.");
-                    }
-                })
-                .catch(error => console.error('Error:', error));
+      document.getElementById("form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        let uname = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+        if (uname && password) {
+          setData(uname, password);
+        } else {
+          alert("Please fill in both fields.");
         }
-    </script>
-</body>
+      });
 
+      async function setData(uname, password) {
+        let numericKey = Date.now(); // Unique numeric key using timestamp
+        fetch(
+          "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDy_JZWFkYi6M9RJKJZUvRd4Bx9rG9FFFk",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: uname,
+              password: password,
+            }),
+          }
+        ).then((data)=>data.json())
+          .then((response) => {
+              alert("Successfully Login Up");
+             localStorage.setItem("register",JSON.stringify(response));
+             if (response.registered){
+                window.location.href="index.html"
+             }
+             console.log(response.registered);
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+    </script>
+  </body>
 </html>
