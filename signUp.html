@@ -154,6 +154,10 @@
         e.preventDefault();
         let uname = document.getElementById("uname").value;
         let password = document.getElementById("password").value;
+        if(password.length < 7){
+          alert("weak password")
+          return
+        }
         if (uname && password) {
           setData(uname, password);
         } else {

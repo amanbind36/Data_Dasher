@@ -172,12 +172,13 @@
           }
         ).then((data)=>data.json())
           .then((response) => {
-              alert("Successfully Login Up");
-             localStorage.setItem("register",JSON.stringify(response));
-             if (response.registered){
+              localStorage.setItem("register",JSON.stringify(response));
+              if (response.registered){
+                 alert("Successfully Login Up");
                 window.location.href="index.html"
+             }else{
+                alert("not successfully")
              }
-             console.log(response.registered);
           })
           .catch((error) => console.error("Error:", error));
       }
