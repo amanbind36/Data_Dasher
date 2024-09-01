@@ -1,0 +1,247 @@
+/* General Body Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #333;
+}
+
+body.light-mode {
+    background-color: #f4f4f4;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+/* Toolbar Styles */
+#toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #333;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* App Header Styles */
+#appHeader {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+}
+
+#logo {
+    height: 40px; /* Adjust as needed */
+    margin-right: 10px;
+}
+
+#appName {
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 20px; /* Adjust as needed */
+}
+
+
+
+/* Toolbar Button Styles */
+#toolbar button,
+#toolbar input {
+    background: #444;
+    border: 1px solid #555;
+    color: #eee;
+    border-radius: 4px;
+    margin: 5px;
+    padding: 1rem; /* Increased padding for better icon display */
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 20px; /* Font Awesome icon size */
+}
+
+#toolbar button:hover,
+#toolbar input:hover {
+    background: #555;
+    color: #fff;
+}
+
+#toolbar input[type="color"] {
+    border: none;
+    padding: 0;
+}
+
+#toolbar input[type="number"] {
+    width: 60px;
+}
+
+/* Specific Text Button Styles */
+#text {
+    background-color: #f0ad4e; /* Example color, adjust as needed */
+}
+
+#text:hover {
+    background-color: #ec971f; /* Darker shade on hover */
+}
+
+/* Icon Styling for Text Button */
+#toolbar button i {
+    font-size: 18px; /* Adjust as needed for icon size */
+    margin-right: 5px; /* Space between icon and text */
+}
+
+/* Canvas Styles */
+#canvas {
+    display: block;
+    overflow: auto;
+    margin: 0 auto;
+
+    border-radius: 8px;
+    background-color: #e9e3e3;
+}
+#box{
+    max-width: 800px;
+    height: 600px;
+    margin: auto;
+   
+    overflow: hidden;
+}
+
+/* Sticky Note Styles */
+.sticky-note {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: #fdfd96;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    resize: both;
+    overflow: auto;
+    cursor: move;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    border-radius: 6px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sticky-note textarea {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    color: inherit;
+    resize: none;
+    outline: none;
+}
+
+.sticky-note.light-mode {
+    background-color: #fdfd96;
+    color: #333;
+}
+
+.sticky-note.dark-mode {
+    background-color: #333;
+    color: #eee;
+}
+
+/* Text Options Styles */
+#textOptions {
+    display: none;
+    margin-top: 10px;
+    background: #444;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#textOptions input,
+#textOptions select {
+    margin-right: 10px;
+    background: #555;
+    border: 1px solid #666;
+    color: #eee;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+#textOptions input[type="color"] {
+    padding: 0;
+}
+
+/* Button Styles */
+button {
+    border: none;
+    border-radius: 4px;
+    font-size: 20px; /* Font Awesome icon size */
+    padding: 10px;
+    background-color: #0066cc;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #004d99;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Zoom and Background Color Controls */
+#zoomIn,
+#zoomOut,
+#bgColor {
+    background-color: #0055a5;
+}
+
+#zoomIn:hover,
+#zoomOut:hover,
+#bgColor:hover {
+    background-color: #004494;
+}
+
+/* Download Button */
+#download {
+    background-color: #4caf50;
+}
+
+#download:hover {
+    background-color: #388e3c;
+}
+
+/* Close Button Styles */
+.close-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: #ff6b6b;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.close-button:hover {
+    background: #ff4d4d;
+}
+
+#additionalControls > button{
+    padding: 1rem;
+    width: 200px;
+    margin-left: 4rem;
+}
+
+#additionalControls > button:hover{
+    background-color: darkblue;
+    transform: scale(1.1);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;}
