@@ -7,7 +7,7 @@ ThinkSpace is a collaborative whiteboard application designed to enhance remote 
 Fullstack
 
 ## Deplolyed App
-Fullstack: https://deployed-site.whatever
+Fullstack: (https://thinkspacewhiteboard.netlify.app/)
 
 ## Directory Structure
 my-app/
