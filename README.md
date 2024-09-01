@@ -12,8 +12,17 @@ Fullstack: (https://thinkspacewhiteboard.netlify.app/)
 ## Directory Structure
 my-app/
 ├─ backend/
+│  ├─ (firebase authentication link directly in login and signup page)
 ├─ frontend/
-│  ├─ ...
+│  ├─ index.html
+│  ├─ login.html
+│  ├─ signup.html
+│  ├─ styles/
+│  │  ├─ styles.css
+│  ├─ scripts/
+│  │  ├─ firebase-config.js
+│  │  ├─ script.js
+
 
 ## Video Walkthrough of the project
 (https://youtu.be/vcrFkQbdzVQ)
