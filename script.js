@@ -78,9 +78,6 @@ bgColorBtn.addEventListener('click', () => canvas.style.backgroundColor = color)
 // Add Sticky Note button
 addStickyNoteBtn.addEventListener('click', addStickyNote);
 
-// Event listeners for zoom buttons
-// zoomInBtn.addEventListener('click', zoomIn);
-// zoomOutBtn.addEventListener('click', zoomOut);
 
 // Event listener for Lock and View mode
 toggleLockBtn.addEventListener('click', toggleLockMode);
@@ -261,20 +258,6 @@ document.getElementById('zoomOut').addEventListener('click', () => {
     }
 });
 
-// // Zooming in and out
-// function zoomIn() {
-//     if (scaleFactor < maxScale) {
-//         scaleFactor += scaleIncrement;
-//         applyZoom();
-//     }
-// }
-
-// function zoomOut() {
-//     if (scaleFactor > minScale) {
-//         scaleFactor -= scaleIncrement;
-//         applyZoom();
-//     }
-// }
 
 function applyZoom() {
     ctx.save();
